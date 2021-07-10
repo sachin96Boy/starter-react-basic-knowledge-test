@@ -1,0 +1,17 @@
+.App__todo-container--top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 98%;
+    padding: 2%;
+  }
+
+.App__todo-container--top-input {
+    flex: 1;
+    height: 30px;
+    margin-right: 2%;
+  }
+
+.App__todo-container--top-button {
+    height: 100%;
+  }  
