@@ -29,7 +29,11 @@
  */
 
 import { useEffect, useState } from "react";
+
+import ToDoForm from "./components/toDoForm/Todoform";
+
 import "./App.css";
+import TodoList from "./components/TodoList";
 
 function App() {
   const [todos, setTodos] = useState<string[]>([]);
@@ -44,41 +48,17 @@ function App() {
     }, 2000);
   }, []);
 
+  // const submitFormHandler = (formdata:any)=> {
+  //   // setNewToDo(formdata);
+  //   setTodos( [newToDo,...todos]      );
+  // }
+
   return (
     <div className="App">
       <div className="App__todo-container">
-        <div className="App__todo-container--top">
-          <input
-            type="text"
-            className="App__todo-container--top-input"
-            onChange={(e) => setNewToDo(e.target.value)}
-            value={newToDo}
-          />
-          <button
-            className="App__todo-container--top-button"
-            onClick={() => {
-              setTodos([newToDo, ...todos]);
-              setNewToDo("");
-            }}
-          >
-            ADD
-          </button>
-        </div>
+        <ToDoForm setTodos={setTodos} todos={todos} newToDo={newToDo} setNewToDo={setNewToDo} />
 
-        <div className="App__todo-container--main">
-          {newToDo.length > 0 && (
-            <div className="Card" style={{ backgroundColor: "yellow" }}>
-              {newToDo}
-            </div>
-          )}
-          {isLoading ? (
-            <div>Loading...</div>
-          ) : (
-            todos.map((item, index) => {
-              return <div className="Card">{item}</div>;
-            })
-          )}
-        </div>
+        <TodoList newToDo={newToDo} todos={todos} isLoading={isLoading} />
       </div>
     </div>
   );
